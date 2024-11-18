@@ -1,4 +1,4 @@
-name: Build Angular Project
+name: Publish to GitHub Packages
 
 on:
   push:
@@ -9,7 +9,7 @@ on:
       - main
 
 jobs:
-  build:
+  publish:
     runs-on: ubuntu-latest
 
     steps:
@@ -27,8 +27,8 @@ jobs:
     - name: Build Angular project
       run: npm run build
 
-    - name: Upload build artifacts
-      uses: actions/upload-artifact@v3
-      with:
-        name: build
-        path: dist/
+    - name: Publish to GitHub Packages
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: npm publish
+      working-directory: ./dist/angular-serial
