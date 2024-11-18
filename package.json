@@ -1,5 +1,5 @@
 {
-  "name": "angular-serial",
+  "name": "@fors/angular-serial",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
