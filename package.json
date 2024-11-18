@@ -9,6 +9,9 @@
   "author": "Matthew Fors",
   "license": "MIT",
   "main": "dist/angular-serial/index.d.ts",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
