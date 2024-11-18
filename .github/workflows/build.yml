@@ -27,11 +27,8 @@ jobs:
     - name: Build Angular project
       run: npm run build
 
-    - name: Authenticate to GitHub Packages registry
-      run: echo "//npm.pkg.github.com/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
-
     - name: Publish to GitHub Packages
-      env:
-        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-      run: npm publish
-      working-directory: ./dist/angular-serial
+      uses: JS-DevTools/npm-publish@v3
+      with:
+        token: ${{ secrets.NPM_TOKEN }}
+        registry: 'https://npm.pkg.github.com'
