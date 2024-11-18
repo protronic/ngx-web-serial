@@ -1,5 +1,5 @@
 {
-  "name": "@fors/angular-serial",
+  "name": "@mattfors/angular-serial",
   "version": "0.0.1",
   "description": "Angular library for Web Serial API with RxJS",
   "repository": {
