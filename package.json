@@ -1,6 +1,6 @@
 {
-  "name": "@mattfors/angular-serial",
-  "version": "0.0.2",
+  "name": "angular-web-serial",
+  "version": "0.0.4",
   "description": "Angular library for Web Serial API with RxJS",
   "repository": {
     "type": "git",
@@ -10,7 +10,7 @@
   "license": "MIT",
   "main": "dist/angular-serial/index.d.ts",
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
+    "registry": "https://registry.npmjs.org"
   },
   "scripts": {
     "ng": "ng",

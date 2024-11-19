@@ -20,7 +20,6 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: '20'
-        scope: '@mattfors'
 
     - name: Install dependencies
       run: npm install
@@ -31,5 +30,5 @@ jobs:
     - name: Publish to GitHub Packages
       uses: JS-DevTools/npm-publish@v3
       with:
-        token: ${{ secrets.NPM_TOKEN }}
-        registry: 'https://npm.pkg.github.com'
+        token: ${{ secrets.NPMJS_TOKEN }}
+        registry: 'https://registry.npmjs.org'
