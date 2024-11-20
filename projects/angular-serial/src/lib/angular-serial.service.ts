@@ -12,12 +12,9 @@ import {
 } from 'rxjs';
 import { DOCUMENT } from '@angular/common';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class AngularSerialService {
 
-  readonly serial: Serial | undefined;
   private port: SerialPort | null = null;
   private abortController: AbortController | null = null;
   private dataStream: WritableStream | null = null;
@@ -34,10 +31,9 @@ export class AngularSerialService {
   }
 
   constructor(
-    @Inject(DOCUMENT) private document: Document,
+    @Inject('Serial') readonly serial: Serial | undefined,
     private ngZone: NgZone
   ) {
-    this.serial = this.document?.defaultView?.navigator?.serial;
   }
 
   /**

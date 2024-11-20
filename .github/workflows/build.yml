@@ -24,8 +24,17 @@ jobs:
     - name: Install dependencies
       run: npm install
 
-    - name: Build Angular project
-      run: npm run build -- --prod
+    - name: Run CI build
+      run: npm run ci:build
+
+    - name: Run CI tests
+      run: npm run ci:test
+
+    - name: Upload coverage report
+      uses: actions/upload-artifact@v3
+      with:
+        name: coverage-report
+        path: coverage
 
     - name: Publish Package
       uses: JS-DevTools/npm-publish@v3

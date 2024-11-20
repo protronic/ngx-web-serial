@@ -1,6 +1,6 @@
 {
   "name": "angular-web-serial",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Angular library for Web Serial API with RxJS",
   "repository": {
     "type": "git",
@@ -17,7 +17,9 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "ci:build": "ng build --prod",
+    "ci:test": "ng test --watch=false --browsers ChromeHeadless --code-coverage"
   },
   "private": false,
   "dependencies": {
