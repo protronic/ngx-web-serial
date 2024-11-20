@@ -1,3 +1,6 @@
+[![Publish to GitHub Packages](https://github.com/mattfors/angular-serial/actions/workflows/build.yml/badge.svg)](https://github.com/mattfors/angular-serial/actions/workflows/build.yml)
+[![codecov](https://codecov.io/github/mattfors/angular-serial/graph/badge.svg?token=GRL2B8OCW5)](https://codecov.io/github/mattfors/angular-serial)
+
 # AngularSerial
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.2.
