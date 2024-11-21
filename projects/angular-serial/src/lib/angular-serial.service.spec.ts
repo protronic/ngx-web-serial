@@ -9,7 +9,7 @@ describe('AngularSerialService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [AngularSerialTestingModule]
+      imports: [AngularSerialTestingModule.forRoot(v => v)],
     });
     service = TestBed.inject(AngularSerialService);
   });
@@ -39,7 +39,69 @@ describe('AngularSerialService', () => {
     });
   });
 
+  it('should handle undefined Serial', () => {
+    TestBed.resetTestingModule();
+    TestBed.configureTestingModule({
+      imports: [AngularSerialTestingModule.forRoot(v => v)],
+      providers: [
+        { provide: 'Serial', useValue: undefined }
+      ]
+    });
+    service = TestBed.inject(AngularSerialService);
+    service.open().subscribe({
+      error: (err) => {
+        expect(err).toBe('Web serial not supported.');
+      }
+    });
+  });
 
+  it('should handle non-writable port', (done) => {
+    const mockSerialPort = {
+      open: () => Promise.resolve(),
+      close: () => Promise.resolve(),
+      readable: new ReadableStream(),
+      writable: null
+    };
+
+    TestBed.resetTestingModule();
+    TestBed.configureTestingModule({
+      imports: [AngularSerialTestingModule.forRoot(v => v)],
+      providers: [
+        { provide: 'Serial', useValue: { requestPort: () => Promise.resolve(mockSerialPort) } }
+      ]
+    });
+    service = TestBed.inject(AngularSerialService);
+    service.open().subscribe({
+      error: (err) => {
+        expect(err).toBe('Port is not readable or writable.');
+        done();
+      }
+    });
+  });
+
+  it('should handle non-readable and non-writable port', (done) => {
+    const mockSerialPort = {
+      open: () => Promise.resolve(),
+      close: () => Promise.resolve(),
+      readable: null,
+      writable: null
+    };
+
+    TestBed.resetTestingModule();
+    TestBed.configureTestingModule({
+      imports: [AngularSerialTestingModule.forRoot(v => v)],
+      providers: [
+        { provide: 'Serial', useValue: { requestPort: () => Promise.resolve(mockSerialPort) } }
+      ]
+    });
+    service = TestBed.inject(AngularSerialService);
+    service.open().subscribe({
+      error: (err) => {
+        expect(err).toBe('Port is not readable or writable.');
+        done();
+      }
+    });
+  });
 
 
 });

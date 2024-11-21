@@ -1,16 +1,19 @@
 import { Inject, Injectable, NgZone } from '@angular/core';
 import {
-  BehaviorSubject, catchError,
+  BehaviorSubject,
+  catchError,
   filter,
   firstValueFrom,
   from,
-  interval, map,
+  interval,
+  map,
   Observable,
   Subject,
-  Subscriber, takeUntil,
-  throwError, timer
+  Subscriber,
+  takeUntil,
+  throwError,
+  timer
 } from 'rxjs';
-import { DOCUMENT } from '@angular/common';
 
 @Injectable()
 export class AngularSerialService {
