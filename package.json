@@ -1,6 +1,6 @@
 {
   "name": "angular-web-serial",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Angular library for Web Serial API with RxJS",
   "repository": {
     "type": "git",
@@ -38,6 +38,7 @@
     "@angular/cli": "^17.3.2",
     "@angular/compiler-cli": "^17.3.0",
     "@types/jasmine": "~5.1.0",
+    "@types/w3c-web-serial": "^1.0.7",
     "jasmine-core": "~5.1.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",
@@ -45,7 +46,6 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
     "ng-packagr": "^17.3.0",
-    "typescript": "~5.4.2",
-    "@types/w3c-web-serial": "^1.0.7"
+    "typescript": "~5.4.2"
   }
 }

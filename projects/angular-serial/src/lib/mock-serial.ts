@@ -4,7 +4,7 @@ import { Inject } from '@angular/core';
 export class MockSerial {
   private readableController: ReadableStreamDefaultController<Uint8Array> | null = null;
   readonly responseFunction: (input: string) => string;
-  private readableStream: ReadableStream<Uint8Array>;
+  readonly readableStream: ReadableStream<Uint8Array>;
   constructor(@Inject(RESPONSE_FUNCTION) responseFunction: (input: string) => string) {
     this.responseFunction = responseFunction;
     this.readableStream = new ReadableStream({

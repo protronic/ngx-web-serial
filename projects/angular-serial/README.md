@@ -1,24 +1,65 @@
-# AngularSerial
+[![npm version](https://badge.fury.io/js/angular-web-serial.svg?icon=si%3Anpm)](https://badge.fury.io/js/angular-web-serial)
+[![Publish to GitHub Packages](https://github.com/mattfors/angular-serial/actions/workflows/build.yml/badge.svg)](https://github.com/mattfors/angular-serial/actions/workflows/build.yml)
+[![codecov](https://codecov.io/github/mattfors/angular-serial/graph/badge.svg?token=GRL2B8OCW5)](https://codecov.io/github/mattfors/angular-serial)
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.0.
+# Angular Web Serial
 
-## Code scaffolding
+Angular Web Serial is an angular module for connecting to serial devices with the Web Serial API.
 
-Run `ng generate component component-name --project angular-serial` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project angular-serial`.
-> Note: Don't forget to add `--project angular-serial` or else it will be added to the default project in your `angular.json` file. 
+## Installation
 
-## Build
+```shell
+npm i angular-web-serial 
+```
 
-Run `ng build angular-serial` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Usage
+Below is the basic usage of the module. A pipe is used to accumulate the raw data from the serial port.
+```typescript
+import { Component } from '@angular/core';
+import { AngularSerialService, provideAngularSerial } from '../../../angular-serial/src';
+import { Observable, scan } from 'rxjs';
+import { AsyncPipe } from '@angular/common';
 
-## Publishing
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  imports: [AsyncPipe],
+  providers: [provideAngularSerial()],
+  template: `
+    <button (click)="open()">Open</button>
+    <input #inputField
+           type="text"
+           (keydown.enter)="write(inputField.value); inputField.value=''"
+           placeholder="Type and press Enter">
+    <div>
+      <textarea [value]="data$ | async" readonly></textarea>
+    </div>
+  `
+})
+export class AppComponent {
 
-After building your library with `ng build angular-serial`, go to the dist folder `cd dist/angular-serial` and run `npm publish`.
+  data$: Observable<string>;
 
-## Running unit tests
+  constructor(private serial: AngularSerialService) {
+    this.data$ = this.serial.read().pipe(
+      scan((acc, value) => acc + value, '')
+    );
+  }
 
-Run `ng test angular-serial` to execute the unit tests via [Karma](https://karma-runner.github.io).
+  open(): void {
+    this.serial.open().subscribe()
+  }
 
-## Further help
+  write(value: string): void {
+    this.serial.write(value + '\r').subscribe();
+  }
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+}
+
+```
+
+## Mock serial device
+The module can be used with a mock serial device for testing or if you do not have a real serial device. Provide a function which takes and returns a string. In this example, the text transmitted to the serial device will be echoed back with 'Hello'.
+```typescript
+providers: [provideAngularSerialTest(i => `Hello ${i}!\n`)]
+```
