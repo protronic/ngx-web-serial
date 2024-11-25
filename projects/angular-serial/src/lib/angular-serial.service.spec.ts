@@ -1,15 +1,15 @@
 import { TestBed } from '@angular/core/testing';
 
 import { AngularSerialService } from './angular-serial.service';
-import { AngularSerialTestingModule } from './angular-serial-testing.module';
 import { switchMap } from 'rxjs';
+import { provideAngularSerialTest } from './angular-serial-testing.module';
 
 describe('AngularSerialService', () => {
   let service: AngularSerialService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [AngularSerialTestingModule.forRoot(v => v)],
+      providers: [provideAngularSerialTest(v => v)]
     });
     service = TestBed.inject(AngularSerialService);
   });
@@ -42,8 +42,8 @@ describe('AngularSerialService', () => {
   it('should handle undefined Serial', () => {
     TestBed.resetTestingModule();
     TestBed.configureTestingModule({
-      imports: [AngularSerialTestingModule.forRoot(v => v)],
       providers: [
+        provideAngularSerialTest(v => v),
         { provide: 'Serial', useValue: undefined }
       ]
     });
@@ -65,8 +65,8 @@ describe('AngularSerialService', () => {
 
     TestBed.resetTestingModule();
     TestBed.configureTestingModule({
-      imports: [AngularSerialTestingModule.forRoot(v => v)],
       providers: [
+        provideAngularSerialTest(v => v),
         { provide: 'Serial', useValue: { requestPort: () => Promise.resolve(mockSerialPort) } }
       ]
     });
@@ -89,8 +89,8 @@ describe('AngularSerialService', () => {
 
     TestBed.resetTestingModule();
     TestBed.configureTestingModule({
-      imports: [AngularSerialTestingModule.forRoot(v => v)],
       providers: [
+        provideAngularSerialTest(v => v),
         { provide: 'Serial', useValue: { requestPort: () => Promise.resolve(mockSerialPort) } }
       ]
     });
