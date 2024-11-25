@@ -1,11 +1,8 @@
-import { RESPONSE_FUNCTION } from './angular-serial-testing.module';
-import { Inject } from '@angular/core';
-
 export class MockSerial {
   private readableController: ReadableStreamDefaultController<Uint8Array> | null = null;
   readonly responseFunction: (input: string) => string;
   readonly readableStream: ReadableStream<Uint8Array>;
-  constructor(@Inject(RESPONSE_FUNCTION) responseFunction: (input: string) => string) {
+  constructor(responseFunction: (input: string) => string) {
     this.responseFunction = responseFunction;
     this.readableStream = new ReadableStream({
       start: (controller) => {
