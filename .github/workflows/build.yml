@@ -47,3 +47,4 @@ jobs:
       with:
         token: ${{ secrets.NPMJS_TOKEN }}
         registry: 'https://registry.npmjs.org'
+        package: 'dist/angular-serial'
