@@ -24,7 +24,7 @@ module.exports = function (config) {
       suppressAll: true // removes the duplicated traces
     },
     coverageReporter: {
-      dir: require('path').join(__dirname, '../../coverage/angular-serial'),
+      dir: require('path').join(__dirname, '../../coverage/ngx-web-serial'),
       subdir: '.',
       reporters: [
         { type: 'html' },

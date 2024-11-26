@@ -1,8 +1,8 @@
 [![npm version](https://badge.fury.io/js/angular-web-serial.svg?icon=si%3Anpm)](https://badge.fury.io/js/angular-web-serial)
-[![Publish to GitHub Packages](https://github.com/mattfors/angular-serial/actions/workflows/build.yml/badge.svg)](https://github.com/mattfors/angular-serial/actions/workflows/build.yml)
-[![codecov](https://codecov.io/github/mattfors/angular-serial/graph/badge.svg?token=GRL2B8OCW5)](https://codecov.io/github/mattfors/angular-serial)
+[![Publish to GitHub Packages](https://github.com/mattfors/ngx-web-serial/actions/workflows/build.yml/badge.svg)](https://github.com/mattfors/ngx-web-serial/actions/workflows/build.yml)
+[![codecov](https://codecov.io/github/mattfors/ngx-web-serial/graph/badge.svg?token=GRL2B8OCW5)](https://codecov.io/github/mattfors/ngx-web-serial)
 
-# Angular Web Serial
+# NGX Web Serial
 
 Angular Web Serial is an angular module for connecting to serial devices with the Web Serial API.
 
@@ -16,7 +16,7 @@ npm i angular-web-serial
 Below is the basic usage of the module. A pipe is used to accumulate the raw data from the serial port. 
 ```typescript
 import { Component } from '@angular/core';
-import { AngularSerialService, provideAngularSerial } from '../../../angular-serial/src';
+import { AngularSerialService, provideAngularSerial } from '../../../ngx-web-serial/src';
 import { Observable, scan } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 

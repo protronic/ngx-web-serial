@@ -1,14 +1,13 @@
 {
-  "name": "angular-web-serial",
-  "version": "0.0.11",
+  "name": "ngx-web-serial",
+  "version": "0.0.1",
   "description": "Angular library for Web Serial API with RxJS",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mattfors/angular-serial"
+    "url": "https://github.com/mattfors/ngx-web-serial"
   },
   "author": "Matthew Fors",
   "license": "MIT",
-  "main": "dist/angular-serial/index.d.ts",
   "publishConfig": {
     "registry": "https://registry.npmjs.org"
   },
@@ -18,8 +17,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "ci:build": "ng build angular-serial --configuration production",
-    "ci:test": "ng test angular-serial --watch=false --browsers ChromeHeadless --code-coverage"
+    "ci:build": "ng build ngx-web-serial --configuration production",
+    "ci:test": "ng test ngx-web-serial --watch=false --browsers ChromeHeadless --code-coverage"
   },
   "private": false,
   "dependencies": {

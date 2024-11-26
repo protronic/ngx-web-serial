@@ -1,17 +1,18 @@
 import { TestBed } from '@angular/core/testing';
 
-import { AngularSerialService } from './angular-serial.service';
+import { NgxWebSerialService, provideAngularSerialTest } from './ngx-web-serial.service';
 import { switchMap } from 'rxjs';
-import { provideAngularSerialTest } from './angular-serial-testing.module';
+
+
 
 describe('AngularSerialService', () => {
-  let service: AngularSerialService;
+  let service: NgxWebSerialService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [provideAngularSerialTest(v => v)]
     });
-    service = TestBed.inject(AngularSerialService);
+    service = TestBed.inject(NgxWebSerialService);
   });
 
   it('should be created', () => {
@@ -47,7 +48,7 @@ describe('AngularSerialService', () => {
         { provide: 'Serial', useValue: undefined }
       ]
     });
-    service = TestBed.inject(AngularSerialService);
+    service = TestBed.inject(NgxWebSerialService);
     service.open().subscribe({
       error: (err) => {
         expect(err).toBe('Web serial not supported.');
@@ -70,7 +71,7 @@ describe('AngularSerialService', () => {
         { provide: 'Serial', useValue: { requestPort: () => Promise.resolve(mockSerialPort) } }
       ]
     });
-    service = TestBed.inject(AngularSerialService);
+    service = TestBed.inject(NgxWebSerialService);
     service.open().subscribe({
       error: (err) => {
         expect(err).toBe('Port is not readable or writable.');
@@ -94,7 +95,7 @@ describe('AngularSerialService', () => {
         { provide: 'Serial', useValue: { requestPort: () => Promise.resolve(mockSerialPort) } }
       ]
     });
-    service = TestBed.inject(AngularSerialService);
+    service = TestBed.inject(NgxWebSerialService);
     service.open().subscribe({
       error: (err) => {
         expect(err).toBe('Port is not readable or writable.');

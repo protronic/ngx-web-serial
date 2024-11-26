@@ -3,23 +3,23 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "angular-serial": {
+    "ngx-web-serial": {
       "projectType": "library",
-      "root": "projects/angular-serial",
-      "sourceRoot": "projects/angular-serial/src",
+      "root": "projects/ngx-web-serial",
+      "sourceRoot": "projects/ngx-web-serial/src",
       "prefix": "lib",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
-            "project": "projects/angular-serial/ng-package.json"
+            "project": "projects/ngx-web-serial/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "projects/angular-serial/tsconfig.lib.prod.json"
+              "tsConfig": "projects/ngx-web-serial/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "projects/angular-serial/tsconfig.lib.json"
+              "tsConfig": "projects/ngx-web-serial/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
@@ -27,12 +27,12 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "tsConfig": "projects/angular-serial/tsconfig.spec.json",
+            "tsConfig": "projects/ngx-web-serial/tsconfig.spec.json",
             "polyfills": [
               "zone.js",
               "zone.js/testing"
             ],
-            "karmaConfig": "projects/angular-serial/karma.conf.js"
+            "karmaConfig": "projects/ngx-web-serial/karma.conf.js"
           }
         }
       }

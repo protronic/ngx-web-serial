@@ -40,11 +40,11 @@ jobs:
       uses: codecov/codecov-action@v3
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
-        files: ./coverage/angular-serial/lcov.info
+        files: ./coverage/ngx-web-serial/lcov.info
 
     - name: Publish Package
       uses: JS-DevTools/npm-publish@v3
       with:
         token: ${{ secrets.NPMJS_TOKEN }}
         registry: 'https://registry.npmjs.org'
-        package: 'dist/angular-serial'
+        package: 'dist/ngx-web-serial'

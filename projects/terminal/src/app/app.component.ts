@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AngularSerialService, provideAngularSerial, provideAngularSerialTest } from '../../../angular-serial/src';
+import { AngularSerialService, provideAngularSerial, provideAngularSerialTest } from '../../../ngx-web-serial/src';
 import { Observable, scan } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 

@@ -1,4 +1,4 @@
-import { Inject, Injectable, NgZone } from '@angular/core';
+import { FactoryProvider, Inject, Injectable, NgZone, Provider } from '@angular/core';
 import {
   BehaviorSubject,
   catchError,
@@ -14,9 +14,11 @@ import {
   throwError,
   timer
 } from 'rxjs';
+import { DOCUMENT } from '@angular/common';
+import { MockSerial } from './mock-serial';
 
 @Injectable()
-export class AngularSerialService {
+export class NgxWebSerialService {
 
   private port: SerialPort | null = null;
   private abortController: AbortController | null = null;
@@ -121,4 +123,26 @@ export class AngularSerialService {
       this.abortController.abort();
     }
   }
+}
+
+export function provideAngularSerial(): Provider[] {
+  return [
+    NgxWebSerialService,
+    {
+      provide: 'Serial',
+      useFactory: (document: Document) => document.defaultView?.navigator?.serial,
+      deps: [DOCUMENT]
+    }
+  ];
+}
+
+export function provideAngularSerialTest(responseFunction?: (input: string) => string): Provider[] {
+  return [
+    NgxWebSerialService,
+    {
+      provide: 'Serial',
+      useFactory: () => new MockSerial(responseFunction || ((input: string) => input)),
+      deps: []
+    } as FactoryProvider
+  ];
 }

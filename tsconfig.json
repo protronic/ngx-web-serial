@@ -3,8 +3,8 @@
   "compileOnSave": false,
   "compilerOptions": {
     "paths": {
-      "angular-serial": [
-        "./dist/angular-serial"
+      "ngx-web-serial": [
+        "./dist/ngx-web-serial"
       ]
     },
     "outDir": "./dist/out-tsc",
