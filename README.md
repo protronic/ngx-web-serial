@@ -1,22 +1,20 @@
-[![npm version](https://badge.fury.io/js/angular-web-serial.svg?icon=si%3Anpm)](https://badge.fury.io/js/angular-web-serial)
 [![Publish to GitHub Packages](https://github.com/mattfors/ngx-web-serial/actions/workflows/build.yml/badge.svg)](https://github.com/mattfors/ngx-web-serial/actions/workflows/build.yml)
-[![codecov](https://codecov.io/github/mattfors/ngx-web-serial/graph/badge.svg?token=GRL2B8OCW5)](https://codecov.io/github/mattfors/ngx-web-serial)
 
-# NGX Web Serial
+# Angular Web Serial
 
 Angular Web Serial is an angular module for connecting to serial devices with the Web Serial API.
 
 ## Installation
 
 ```shell
-npm i angular-web-serial 
+npm i ngx-web-serial 
 ```
 
 ## Usage
-Below is the basic usage of the module. A pipe is used to accumulate the raw data from the serial port. 
+Below is the basic usage of the module. A pipe is used to accumulate the raw data from the serial port.
 ```typescript
 import { Component } from '@angular/core';
-import { AngularSerialService, provideAngularSerial } from '../../../ngx-web-serial/src';
+import { AngularSerialService, provideAngularSerial } from 'ngx-web-serial';
 import { Observable, scan } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 
@@ -59,7 +57,7 @@ export class AppComponent {
 ```
 
 ## Mock serial device
-The module can be used with a mock serial device for testing or if you do not have a real serial device. Provide a function which takes and returns a string. In this example, the text transmitted to the serial device will be echoed back with 'Hello'.  
+The module can be used with a mock serial device for testing or if you do not have a real serial device. Provide a function which takes and returns a string. In this example, the text transmitted to the serial device will be echoed back with 'Hello'.
 ```typescript
 providers: [provideAngularSerialTest(i => `Hello ${i}!\n`)]
 ```
