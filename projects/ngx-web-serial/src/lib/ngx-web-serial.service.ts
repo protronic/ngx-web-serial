@@ -18,7 +18,7 @@ import { DOCUMENT } from '@angular/common';
 import { MockSerial } from './mock-serial';
 
 @Injectable()
-export class NgxWebSerialService {
+export class NgxWebSerial {
 
   private port: SerialPort | null = null;
   private abortController: AbortController | null = null;
@@ -125,9 +125,9 @@ export class NgxWebSerialService {
   }
 }
 
-export function provideAngularSerial(): Provider[] {
+export function provideNgxWebSerial(): Provider[] {
   return [
-    NgxWebSerialService,
+    NgxWebSerial,
     {
       provide: 'Serial',
       useFactory: (document: Document) => document.defaultView?.navigator?.serial,
@@ -136,9 +136,9 @@ export function provideAngularSerial(): Provider[] {
   ];
 }
 
-export function provideAngularSerialTest(responseFunction?: (input: string) => string): Provider[] {
+export function provideNgxWebSerialTest(responseFunction?: (input: string) => string): Provider[] {
   return [
-    NgxWebSerialService,
+    NgxWebSerial,
     {
       provide: 'Serial',
       useFactory: () => new MockSerial(responseFunction || ((input: string) => input)),

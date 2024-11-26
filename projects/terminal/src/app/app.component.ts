@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AngularSerialService, provideAngularSerial, provideAngularSerialTest } from '../../../ngx-web-serial/src';
+import { NgxWebSerial, provideNgxWebSerial } from '../../../ngx-web-serial/src';
 import { Observable, scan } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 
@@ -7,7 +7,7 @@ import { AsyncPipe } from '@angular/common';
   selector: 'app-root',
   standalone: true,
   imports: [AsyncPipe],
-  providers: [provideAngularSerialTest(i => `Hello ${i}!\n`)],
+  providers: [provideNgxWebSerial()],
   template: `
     <button (click)="open()">Open</button>
     <input #inputField
@@ -23,7 +23,7 @@ export class AppComponent {
 
   data$: Observable<string>;
 
-  constructor(private serial: AngularSerialService) {
+  constructor(private serial: NgxWebSerial) {
     this.data$ = this.serial.read().pipe(
       scan((acc, value) => acc + value, '')
     );

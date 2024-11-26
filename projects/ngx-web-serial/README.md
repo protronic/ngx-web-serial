@@ -1,8 +1,10 @@
 [![Publish to GitHub Packages](https://github.com/mattfors/ngx-web-serial/actions/workflows/build.yml/badge.svg)](https://github.com/mattfors/ngx-web-serial/actions/workflows/build.yml)
 
-# Angular Web Serial
+# NgxWebSerial
 
-Angular Web Serial is an angular module for connecting to serial devices with the Web Serial API.
+NgxWebSerial is an angular library for connecting to serial devices with the Web Serial API and RxJS.
+
+Connecting, transmitting and receiving data are abstracted to RxJS observables which will be familiar to anyone using Angular.
 
 ## Installation
 
@@ -11,10 +13,10 @@ npm i ngx-web-serial
 ```
 
 ## Usage
-Below is the basic usage of the module. A pipe is used to accumulate the raw data from the serial port.
+Below demonstrates the basic usage. A pipe is used to accumulate the raw data from the serial port.
 ```typescript
 import { Component } from '@angular/core';
-import { AngularSerialService, provideAngularSerial } from 'ngx-web-serial';
+import { NgxWebSerial, provideNgxWebSerial } from 'ngx-web-serial';
 import { Observable, scan } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 
@@ -22,7 +24,7 @@ import { AsyncPipe } from '@angular/common';
   selector: 'app-root',
   standalone: true,
   imports: [AsyncPipe],
-  providers: [provideAngularSerial()],
+  providers: [provideNgxWebSerial()],
   template: `
     <button (click)="open()">Open</button>
     <input #inputField
@@ -38,7 +40,7 @@ export class AppComponent {
 
   data$: Observable<string>;
 
-  constructor(private serial: AngularSerialService) {
+  constructor(private serial: NgxWebSerial) {
     this.data$ = this.serial.read().pipe(
       scan((acc, value) => acc + value, '')
     );
@@ -49,7 +51,7 @@ export class AppComponent {
   }
 
   write(value: string): void {
-    this.serial.write(value + '\r').subscribe();
+    this.serial.write(value).subscribe();
   }
 
 }
@@ -59,5 +61,5 @@ export class AppComponent {
 ## Mock serial device
 The module can be used with a mock serial device for testing or if you do not have a real serial device. Provide a function which takes and returns a string. In this example, the text transmitted to the serial device will be echoed back with 'Hello'.
 ```typescript
-providers: [provideAngularSerialTest(i => `Hello ${i}!\n`)]
+providers: [provideNgxWebSerialTest(i => `Hello ${i}!\n`)]
 ```

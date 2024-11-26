@@ -1,6 +1,23 @@
 {
   "name": "ngx-web-serial",
-  "version": "0.0.2",
+  "version": "0.0.3",
+  "description": "Angular library for Web Serial API with RxJS",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mattfors/ngx-web-serial"
+  },
+  "author": "Matthew Fors",
+  "license": "MIT",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org"
+  },
+  "keywords": [
+    "serial",
+    "rs232",
+    "angular",
+    "arduino",
+    "RxJS"
+  ],
   "peerDependencies": {
     "@angular/common": "^17.3.0",
     "@angular/core": "^17.3.0"
