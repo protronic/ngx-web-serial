@@ -1,4 +1,5 @@
 [![Publish to GitHub Packages](https://github.com/mattfors/ngx-web-serial/actions/workflows/build.yml/badge.svg)](https://github.com/mattfors/ngx-web-serial/actions/workflows/build.yml)
+[![codecov](https://codecov.io/gh/mattfors/ngx-web-serial/branch/main/graph/badge.svg?token=GRL2B8OCW5)](https://codecov.io/gh/mattfors/ngx-web-serial)
 
 # NgxWebSerial
 
