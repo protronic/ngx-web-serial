@@ -1,7 +1,9 @@
 import { TestBed } from '@angular/core/testing';
 
-import { NgxWebSerial, provideNgxWebSerialTest } from './ngx-web-serial.service';
+import { NgxWebSerial } from './ngx-web-serial.service';
 import { switchMap } from 'rxjs';
+import { provideNgxWebSerialTest } from './ngx-web-serial.providers';
+import { SERIAL_TOKEN } from './ngx-web-serial.providers.spec';
 
 
 
@@ -21,7 +23,7 @@ describe('AngularSerialService', () => {
 
   it('should flag service as opened', (done) => {
     service.open().subscribe(() => {
-      service.isConnected().subscribe((connected) => {
+      service.connected.subscribe((connected) => {
         expect(connected).toBeTrue();
         done();
       });
@@ -45,7 +47,7 @@ describe('AngularSerialService', () => {
     TestBed.configureTestingModule({
       providers: [
         provideNgxWebSerialTest(v => v),
-        { provide: 'Serial', useValue: undefined }
+        { provide: SERIAL_TOKEN, useValue: undefined }
       ]
     });
     service = TestBed.inject(NgxWebSerial);
@@ -68,7 +70,7 @@ describe('AngularSerialService', () => {
     TestBed.configureTestingModule({
       providers: [
         provideNgxWebSerialTest(v => v),
-        { provide: 'Serial', useValue: { requestPort: () => Promise.resolve(mockSerialPort) } }
+        { provide: SERIAL_TOKEN, useValue: { requestPort: () => Promise.resolve(mockSerialPort) } }
       ]
     });
     service = TestBed.inject(NgxWebSerial);
@@ -92,7 +94,7 @@ describe('AngularSerialService', () => {
     TestBed.configureTestingModule({
       providers: [
         provideNgxWebSerialTest(v => v),
-        { provide: 'Serial', useValue: { requestPort: () => Promise.resolve(mockSerialPort) } }
+        { provide: SERIAL_TOKEN, useValue: { requestPort: () => Promise.resolve(mockSerialPort) } }
       ]
     });
     service = TestBed.inject(NgxWebSerial);

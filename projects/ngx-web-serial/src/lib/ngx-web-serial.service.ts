@@ -1,7 +1,8 @@
-import { FactoryProvider, Inject, Injectable, NgZone, Provider } from '@angular/core';
+import { Inject, Injectable, NgZone } from '@angular/core';
 import {
   BehaviorSubject,
   catchError,
+  concatMap,
   filter,
   firstValueFrom,
   from,
@@ -10,12 +11,13 @@ import {
   Observable,
   Subject,
   Subscriber,
+  take,
   takeUntil,
   throwError,
   timer
 } from 'rxjs';
-import { DOCUMENT } from '@angular/common';
-import { MockSerial } from './mock-serial';
+import { accumulateToBuffer, bufferUntilLast, splitLinesByDelimiter } from './rxjs-operators';
+import { SERIAL_TOKEN } from './ngx-web-serial.providers.spec';
 
 @Injectable()
 export class NgxWebSerial {
@@ -26,6 +28,7 @@ export class NgxWebSerial {
   private dataSubject: Subject<string> = new Subject<string>();
   private writer: WritableStreamDefaultWriter<Uint8Array> | null = null;
   private connectedSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  readonly connected: Observable<boolean> = this.connectedSubject.asObservable();
 
   private readonly sink: UnderlyingSink =  {
     write: (chunk: any) => {
@@ -36,7 +39,7 @@ export class NgxWebSerial {
   }
 
   constructor(
-    @Inject('Serial') readonly serial: Serial | undefined,
+    @Inject(SERIAL_TOKEN) readonly serial: Serial | undefined,
     private ngZone: NgZone
   ) {
   }
@@ -75,12 +78,50 @@ export class NgxWebSerial {
     });
   }
 
-  isConnected(): Observable<boolean> {
-    return this.connectedSubject.asObservable();
-  }
 
   read(): Observable<string> {
     return this.dataSubject.asObservable();
+  }
+
+  /**
+  * Writes a string to the serial port and waits for a response.
+  *
+  * @param data - The string to write to the serial port.
+  * @param separator - The delimiter used to split the lines. Defaults to '\r\n'.
+  * @returns An Observable that emits the response from the serial port
+  */
+  writeReadLine(data: string, separator: string = '\r\n'): Observable<string> {
+    return this.write(data).pipe(
+      concatMap(() => this.readLine(separator).pipe(take(1)))
+    );
+  }
+
+  /**
+  * Writes an array of strings to the serial port in sequential order and waiting for a
+  * response after each write. The responses are emitted as an array.
+  *
+  * @param data - An array of strings to write to the serial port.
+  * @returns An Observable that emits an array of responses from the serial port.
+  */
+  writeReadLines(data: string[]): Observable<string[]> {
+    return from(data).pipe(
+      concatMap(v => this.writeReadLine(v)),
+      bufferUntilLast()
+    );
+  }
+
+  /**
+  * Reads lines of data from the serial port, splitting the data by the specified delimiter.
+  *
+  * @param separator - The delimiter used to split the lines. Defaults to '\r\n'.
+  * @returns An Observable that emits the lines of data as they are read.
+  */
+  readLine(separator: string = '\r\n'): Observable<string> {
+    return this.read().pipe(splitLinesByDelimiter(separator));
+  }
+
+  readLineBuffer(bufferSize: number = 1000, separator: string = '\r\n'): Observable<string[]> {
+    return this.readLine(separator).pipe(accumulateToBuffer(bufferSize));
   }
 
   write(data: string): Observable<void> {
@@ -123,26 +164,4 @@ export class NgxWebSerial {
       this.abortController.abort();
     }
   }
-}
-
-export function provideNgxWebSerial(): Provider[] {
-  return [
-    NgxWebSerial,
-    {
-      provide: 'Serial',
-      useFactory: (document: Document) => document.defaultView?.navigator?.serial,
-      deps: [DOCUMENT]
-    }
-  ];
-}
-
-export function provideNgxWebSerialTest(responseFunction?: (input: string) => string): Provider[] {
-  return [
-    NgxWebSerial,
-    {
-      provide: 'Serial',
-      useFactory: () => new MockSerial(responseFunction || ((input: string) => input)),
-      deps: []
-    } as FactoryProvider
-  ];
 }
