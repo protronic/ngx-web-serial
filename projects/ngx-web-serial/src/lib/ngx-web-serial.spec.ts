@@ -3,7 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import { NgxWebSerial } from './ngx-web-serial.service';
 import { switchMap } from 'rxjs';
 import { provideNgxWebSerialTest } from './ngx-web-serial.providers';
-import { SERIAL_TOKEN } from './ngx-web-serial.providers.spec';
+import { SERIAL_TOKEN } from './ngx-web-serial.providers';
 
 
 
