@@ -1,8 +1,9 @@
-import { FactoryProvider, Provider } from '@angular/core';
+import { FactoryProvider, InjectionToken, Provider } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { MockSerial } from './mock-serial';
 import { NgxWebSerial } from './ngx-web-serial.service';
-import { SERIAL_TOKEN } from './ngx-web-serial.providers.spec';
+
+export const SERIAL_TOKEN = new InjectionToken<MockSerial>('Serial');
 
 export function provideNgxWebSerial(): Provider[] {
   return [

@@ -1,11 +1,9 @@
 import { TestBed } from '@angular/core/testing';
-import { DOCUMENT } from '@angular/common';
 import { NgxWebSerial } from './ngx-web-serial.service';
-import { provideNgxWebSerial, provideNgxWebSerialTest } from './ngx-web-serial.providers';
+import { provideNgxWebSerial, provideNgxWebSerialTest, SERIAL_TOKEN } from './ngx-web-serial.providers';
 import { MockSerial } from './mock-serial';
-import { InjectionToken } from '@angular/core';
 
-export const SERIAL_TOKEN = new InjectionToken<MockSerial>('Serial');
+
 describe('NgxWebSerial Providers', () => {
   it('should provide NgxWebSerial and Serial', () => {
     TestBed.configureTestingModule({

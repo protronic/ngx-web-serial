@@ -17,7 +17,7 @@ import {
   timer
 } from 'rxjs';
 import { accumulateToBuffer, bufferUntilLast, splitLinesByDelimiter } from './rxjs-operators';
-import { SERIAL_TOKEN } from './ngx-web-serial.providers.spec';
+import { SERIAL_TOKEN } from './ngx-web-serial.providers';
 
 @Injectable()
 export class NgxWebSerial {
