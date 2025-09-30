@@ -1,5 +1,5 @@
-import { FactoryProvider, InjectionToken, Provider } from '@angular/core';
-import { DOCUMENT } from '@angular/common';
+import { FactoryProvider, InjectionToken, Provider, DOCUMENT } from '@angular/core';
+
 import { MockSerial } from './mock-serial';
 import { NgxWebSerial } from './ngx-web-serial.service';
 
