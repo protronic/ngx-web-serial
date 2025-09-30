@@ -4,11 +4,10 @@ import { concatMap, from, Observable, scan, switchMap, tap } from 'rxjs';
 import { AsyncPipe, NgForOf, NgIf } from '@angular/common';
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [AsyncPipe, NgForOf, NgIf],
-  providers: [provideNgxWebSerial()],
-  template: `
+    selector: 'app-root',
+    imports: [AsyncPipe, NgForOf, NgIf],
+    providers: [provideNgxWebSerial()],
+    template: `
     <button (click)="open()" *ngIf="!(connected$ | async)">Open</button>
     <button (click)="close()" *ngIf="(connected$ | async)">Close</button>
     <button (click)="validate()" >Validate</button>
