@@ -4,7 +4,7 @@
   "description": "Angular library for Web Serial API with RxJS",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mattfors/ngx-web-serial"
+    "url": "git@github.com:protronic/ngx-web-serial.git"
   },
   "author": "Matthew Fors",
   "license": "MIT",

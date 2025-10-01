@@ -4,7 +4,7 @@
   "description": "Angular library for Web Serial API with RxJS",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mattfors/ngx-web-serial"
+    "url": "git+ssh://git@github.com/protronic/ngx-web-serial.git"
   },
   "author": "Matthew Fors",
   "license": "MIT",
@@ -18,8 +18,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "ci:build": "ng build ngx-web-serial --configuration production",
-    "ci:test": "ng test ngx-web-serial --watch=false --browsers ChromeHeadless --code-coverage",
-    "publish": "publish-to-git"
+    "ci:test": "ng test ngx-web-serial --watch=false --browsers ChromeHeadless --code-coverage"
   },
   "private": false,
   "dependencies": {
@@ -46,7 +45,11 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
     "ng-packagr": "^20.3.0",
-    "publish-to-git": "^1.2.0",
     "typescript": "~5.8.3"
-  }
+  },
+  "main": "index.js",
+  "bugs": {
+    "url": "https://github.com/protronic/ngx-web-serial/issues"
+  },
+  "homepage": "https://github.com/protronic/ngx-web-serial#readme"
 }
