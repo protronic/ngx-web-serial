@@ -18,7 +18,8 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "ci:build": "ng build ngx-web-serial --configuration production",
-    "ci:test": "ng test ngx-web-serial --watch=false --browsers ChromeHeadless --code-coverage"
+    "ci:test": "ng test ngx-web-serial --watch=false --browsers ChromeHeadless --code-coverage",
+    "publish": "publish-to-git -- ngx-web-serial"
   },
   "private": false,
   "dependencies": {
@@ -45,6 +46,7 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
     "ng-packagr": "^20.3.0",
+    "publish-to-git": "git+https://github.com/protronic/publish-to-git.git#v1.2.0",
     "typescript": "~5.8.3"
   },
   "main": "index.js",
