@@ -1,0 +1,5 @@
+/*
+ * Public API Surface of ngx-web-serial
+ */
+export * from './lib/ngx-web-serial.service';
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicHVibGljLWFwaS5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3Byb2plY3RzL25neC13ZWItc2VyaWFsL3NyYy9wdWJsaWMtYXBpLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBOztHQUVHO0FBRUgsY0FBYyw4QkFBOEIsQ0FBQyIsInNvdXJjZXNDb250ZW50IjpbIi8qXG4gKiBQdWJsaWMgQVBJIFN1cmZhY2Ugb2Ygbmd4LXdlYi1zZXJpYWxcbiAqL1xuXG5leHBvcnQgKiBmcm9tICcuL2xpYi9uZ3gtd2ViLXNlcmlhbC5zZXJ2aWNlJztcbiJdfQ==
